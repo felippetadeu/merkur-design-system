@@ -6,6 +6,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Button from './index';
 import * as Fa from 'react-icons/fa';
+import { theme } from '../../theme';
+import { getThemeColors } from '../../theme/index.storybook';
 
 export default {
   component: Button,
@@ -17,12 +19,19 @@ export default {
     variant: {
       options: ['default', 'outline'],
       control: {
-        type: 'radio'
+        type: 'select'
       }
     },
     leftIcon: {
       options: Object.keys(Fa),
       mapping: Fa,
+      control: {
+        type: 'select'
+      }
+    },
+    bg: {
+      options: getThemeColors(),
+      mapping: getThemeColors(),
       control: {
         type: 'select'
       }
