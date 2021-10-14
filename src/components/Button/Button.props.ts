@@ -5,5 +5,6 @@ export interface ButtonProps extends SizeProps, FontSizeProps, SpaceProps, Color
   bg: string,
   color?: string,
   children?: React.ReactNode,
-  leftIcon?: any
+  leftIcon?: any,
+  isLoading?: boolean
 }

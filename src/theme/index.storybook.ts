@@ -1,4 +1,31 @@
 import { theme } from './index';
+import * as Fa from 'react-icons/fa';
+
+interface IThemeControlLabels {
+  [name: string]: string;
+}
+
+interface IThemeControl {
+  type: 'color'|'radio'|'input'|'text'|'select';
+  labels?: IThemeControlLabels;
+}
+
+interface IThemeColors {
+  options: any[];
+  mapping: any[];
+  control: IThemeControl;
+}
+
+interface IThemeFontSizes {
+  options: any[];
+  control: IThemeControl;
+}
+
+interface IThemeIcons {
+  options: any[];
+  mapping: any;
+  control: IThemeControl;
+}
 
 export const getThemeColors = () => {
   let keys: string[] = [];
@@ -16,5 +43,19 @@ export const getThemeColors = () => {
     }
   })
 
-  return keys;
+  return { options: keys, mapping: keys, control: { type: 'select' } } as IThemeColors;
+}
+
+export const getThemeFontSizes = () => {
+  let obj: IThemeFontSizes = { control: { type: 'select', labels: {}}, options: []};
+  theme.fontSizes.forEach((v, i) => {
+    obj.options.push(i.toString())
+    obj.control.labels![i.toString()] = `v:${i.toString()} - t:${v.toString()}`;
+  })
+  return obj;
+}
+
+export const getThemeIcons = () => {
+  let obj: IThemeIcons = { options: Object.keys(Fa), mapping: Fa, control: { type: 'select' }}
+  return obj;
 }

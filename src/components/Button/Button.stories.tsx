@@ -1,40 +1,28 @@
 // Button.stories.ts | Button.stories.tsx
-
-import React from 'react';
-
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Button from './index';
-import * as Fa from 'react-icons/fa';
-import { theme } from '../../theme';
-import { getThemeColors } from '../../theme/index.storybook';
+import { getThemeColors, getThemeFontSizes, getThemeIcons } from '../../theme/index.storybook';
+
+const colors = getThemeColors();
+const fontSizes = getThemeFontSizes();
+const icons = getThemeIcons();
 
 export default {
   component: Button,
   title: 'Components/Button',
   argTypes: {
-    color: {
-      control: { type: 'color' }
-    },
     variant: {
       options: ['default', 'outline'],
       control: {
         type: 'select'
       }
     },
-    leftIcon: {
-      options: Object.keys(Fa),
-      mapping: Fa,
-      control: {
-        type: 'select'
-      }
-    },
-    bg: {
-      options: getThemeColors(),
-      mapping: getThemeColors(),
-      control: {
-        type: 'select'
-      }
+    leftIcon: icons,
+    bg: colors,
+    fontSize: fontSizes,
+    isLoading: {
+      control: { type: 'boolean'}
     }
   }
 } as ComponentMeta<typeof Button>;
@@ -50,5 +38,6 @@ Default.args = {
   bg: 'reds.4',
   fontSize: "0",
   variant: 'default',
-  children: 'Button'
+  children: 'Button',
+  isLoading: false
 };
